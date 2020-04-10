@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>用户列表</title>
+</head>
+<style>
+    #userList {
+        margin: 0 auto;
+    }
+
+    #addUserForm {
+        float: left;
+        position: absolute;
+        left: 60px;
+    }
+
+    #Btn {
+        float: left;
+        position: absolute;
+        left: 80px;
+        top: 250px;;
+    }
+</style>
+<body>
+<!--用户列表-->
+<div id="userList"></div>
+<!--添加用户窗口-->
+<div id="addUserWin" class="easyui-window" title="添加用户" style="width:450px;height:400px;display: none"
+     data-options="iconCls:'icon-save',modal:true,closed:true">
+    <br/>
+    <br/>
+    <form id="addUserForm" name="addUserForm" method="post">
+        <table>
+            <tr>
+                <td><span style="color: red">*</span>用户名：</td>
+                <td><input class="easyui-textbox" style="width:150px" type="text"
+                           id="userName" name="userName"
+                           prompt="请输入用户名"
+                           data-options="required:true,validType:['loginName','length[2,6]'],validateOnBlur:true,validateOnCreate:false"
+                /></td>
+            </tr>
+            <tr>
+                <td><span style="color: red">*</span>密码：</td>
+                <td>
+                    <input class="easyui-textbox" type="password" style="width:150px" id="userPassword" name="userPassword" value="123456"
+                    data-options="required:true,validType:['length[6,18]']"
+                    />
+                </td>
+                <td>默认密码：123456</td>
+            </tr>
+            <tr>
+                <td><span style="color: red">*</span>再次输入密码：</td>
+                <td>
+                    <input class="easyui-textbox" style="width:150px" type="password" name="reUserPassword"value="123456"
+                           required="required" validType="equalTo['#userPassword']"
+                    />
+                </td>
+            </tr>
+        </table>
+        <div id="Btn">
+            <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" href="#"  onclick="addUser()" style="width:80px">确认添加</a>
+            <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="#" onclick="cancelAdd()" style="width:80px">取消添加</a>
+        </div>
+    </form>
+</div>
+<script src="../lib/jquery/dist/jquery.js"></script>
+<script src="../lib/jquery-easyui/jquery.easyui.min.js"></script>
+<script src="../lib/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+<script src="../lib/jquery-easyui/easyui-extend/easyui-extend-rcm.js"></script>
+<script src="../lib/common/common.js"></script>
+<script src="user_index.js"></script>
+<link rel="stylesheet" href="../lib/jquery-easyui/themes/icon.css"/>
+<link rel="stylesheet" href="../lib/jquery-easyui/themes/default/easyui.css"/>
+</body>
+</html>

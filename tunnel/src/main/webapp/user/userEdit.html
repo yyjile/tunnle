@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>edit</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="../lib/jquery-easyui/themes/icon.css"/>
+    <link rel="stylesheet" href="../lib/jquery-easyui/themes/default/easyui.css"/>
+    <link rel="stylesheet" href="../css/style.css"/>
+    <link rel="stylesheet" href="../css/sunStyle.css"/>
+</head>
+<style>
+    #roleBtn {
+        margin-top: 90px;
+        margin-left: 160px;
+    }
+</style>
+<body style="overflow: hidden;">
+<div class="admin_module_mainbox">
+    <div class="postion">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%"
+               height="32">
+            <tr>
+                <td height="32" width="70"><p class="dqwz-name">当前位置：</p></td>
+                <td class="wd" width="60"><a href="#">用户管理</a></td>
+                <td width="10"><img src="../images/jt.gif"/></td>
+                <td><p class="dqwz-name">修改信息</p></td>
+            </tr>
+        </table>
+    </div>
+    <div class="sub_data">
+        <div style="height: 90%; width: 100%; overflow: auto;">
+            <form action="" id="editForm" name="mainform" method="post">
+                <!-- 页面查询条件 -->
+                <input type="hidden" id="id" name="id" th:value="${id}"/>
+                <!-- 用户状态 -->
+                <input type="hidden" name="userAvailable" id="userAvailable" th:value="${userAvailable}"/>
+                <input type="hidden" id="roleIds" name="roleIds" th:value="${roleIds}"/>
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" class="table_box">
+                    <tr>
+                        <td colspan="2" height="40" align="center" class="td_leftL td_rightL td_botL">
+                            <p>修改用户信息</p></td>
+                    </tr>
+                    <tr>
+                        <th width="110" height="35" class="td_leftL td_botL" align="right"><font
+                                color="#FF0000">*</font>用户名&nbsp;</th>
+                        <td width="490" class="td_leftL td_botL td_rightL">
+                            &nbsp;<input type="text" class="easyui-textbox" name="userName" id="userName"
+                                         readonly="readonly"
+                                         th:value="${userName}"/></td>
+                    </tr>
+                    <tr>
+                        <th width="110" height="70" class="td_leftL td_botL" align="right"><font
+                                color="#FF0000">*</font>所拥有的角色&nbsp;</th>
+                        <td width="490" class="td_leftL td_botL td_rightL textarea_box">
+                            &nbsp;
+                            <textarea rows="2" cols="4" id="roleNames" name="roleNames"
+                                      readonly="readonly" th:text="${roleNames}">
+
+                            </textarea>
+                            <input id="openRoleList" type="button" class="input_button" value="角色列表"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="110" height="35" class="td_leftL td_botL" align="right">新密码&nbsp;</th>
+                        <td width="490" class="td_leftL td_botL td_rightL">
+                            &nbsp;<input type="password"
+                                         class="easyui-textbox"
+                                         name="userPassword"
+                                         id="userPassword"
+                                         validType="isChangePwd"
+                                         />&nbsp;
+                            <span id="info_span" class="info_span">密码长度为6-18，为空则不修改密码</span></td>
+                    </tr>
+                    <tr>
+                        <th width="110" height="35" class="td_leftL td_botL" align="right">确认密码&nbsp;</th>
+                        <td width="490" class="td_leftL td_botL td_rightL">
+                            &nbsp;<input type="password"
+                                         class="easyui-textbox"
+                                         id="reUserPassword"
+                                         validType="equalTo['#userPassword']"/>
+                            <span class="info_span">请确保两次密码一致</span></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" height="40" align="center" class="td_leftL td_rightL td_botL">
+                            <input id="update" type="button" class="input_button" value="保 存"/>&nbsp;
+                            <input id="goBack" type="button" class="input_button" value="返 回"/></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+
+    </div>
+</div>
+<!--角色窗口-->
+<div id="roleWin" class="easyui-window" title="角色列表" style="width:500px;height:400px;display: none"
+     data-options="iconCls:'icon-home',modal:true,closed:true">
+    <!--角色列表-->
+    <table id="roleList"></table>
+    <div id="roleBtn">
+        <input onclick="getRoles()" type="button" class="input_button" value="添 加"/>&nbsp;
+        <input onclick="cancel()" type="button" class="input_button" value="返 回"/>
+    </div>
+</div>
+<script src="../lib/jquery/dist/jquery.js"></script>
+<script src="../lib/jquery-easyui/jquery.easyui.min.js"></script>
+<script src="../lib/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+<script src="../lib/jquery-easyui/easyui-extend/easyui-extend-rcm.js"></script>
+<script src="user_edit.js"></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nuc.tunnel.mapper.MenuMapper" >
+  <resultMap id="BaseResultMap" type="com.nuc.tunnel.entity.Menu" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="menu_no" property="menuNo" jdbcType="VARCHAR" />
+    <result column="text" property="text" jdbcType="VARCHAR" />
+    <result column="link" property="link" jdbcType="VARCHAR" />
+    <result column="menu_desc" property="menuDesc" jdbcType="VARCHAR" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
+    <result column="icon_type" property="iconType" jdbcType="VARCHAR" />
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="group" property="group" jdbcType="BIT" />
+    <result column="hide_in_breadcrumb" property="hideInBreadcrumb" jdbcType="BIT" />
+    <result column="parent_id" property="parentId" jdbcType="BIGINT" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from menu
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.nuc.tunnel.entity.Menu" useGeneratedKeys="true" keyProperty="id" >
+    insert into menu (menu_no, text, link, 
+      menu_desc, icon, icon_type,order_id,
+      group, hide_in_breadcrumb,parent_id)
+    values (#{menuNo,jdbcType=VARCHAR}, #{text,jdbcType=VARCHAR}, #{link,jdbcType=VARCHAR}, 
+      #{menuDesc,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, #{icon_type,jdbcType=VARCHAR}, #{orderId,jdbcType=BIGINT},
+      #{group,jdbcType=BIT}, #{hideInBreadcrumb,jdbcType=BIT}, #{parentId,jdbcType=BIGINT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.nuc.tunnel.entity.Menu" >
+    update menu
+    set menu_no = #{menuNo,jdbcType=VARCHAR},
+      text = #{text,jdbcType=VARCHAR},
+      link = #{link,jdbcType=VARCHAR},
+      menu_desc = #{menuDesc,jdbcType=VARCHAR},
+      icon = #{icon,jdbcType=VARCHAR},icon_type = #{icon_type,jdbcType=VARCHAR},
+      order_id = #{orderId,jdbcType=BIGINT},
+      group = #{group,jdbcType=BIT},
+      hide_in_breadcrumb = #{hideInBreadcrumb,jdbcType=BIT},
+      parent_id = #{parentId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select id,menu_no,text,link,menu_desc,icon,icon_type,order_id,"group",hide_in_breadcrumb,parent_id
+    from menu
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id,menu_no,text,link,menu_desc,icon,icon_type,order_id,"group",hide_in_breadcrumb,parent_id
+    from menu
+  </select>
+
+  <!--根据角色id查询角色下的菜单-->
+  <select id="selectMenuByRoleId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+    select me.*
+    from menu me,role ro,role_menu rm
+    where me.id = rm.menu_id
+    and ro.id = rm.role_id
+    and ro.id = #{roleId,jdbcType=BIGINT}
+  </select>
+
+  <select id="selectMenuByUserId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+    select me.*
+    from menu me
+    where me.id in (
+    select rm.menu_id
+    from role_menu rm
+    where rm.role_id in (
+    select er.role_id
+    from employee_role er
+    where er.employee_id = #{userId,jdbcType=BIGINT}
+    )
+    )
+  </select>
+
+  <update id="updateRoleMenuByRoleIdAndMenuID" parameterType="java.util.Map">
+    update role_menu set menu_id = #{menusId,jdbcType=BIGINT}
+    where role_id = #{roleId,jdbcType=BIGINT}
+  </update>
+
+  <insert id="insertRoleMenu" parameterType="java.util.Map">
+    insert into role_menu (role_id, menu_id)
+    values (#{roleId,jdbcType=BIGINT},#{menusId,jdbcType=BIGINT})
+  </insert>
+
+  <delete id="deleteRoleMenuByRoleIdAndMenuID" parameterType="java.lang.Long">
+    delete from role_menu
+    where role_id = #{roleId,jdbcType=BIGINT}
+    and menu_id = #{menusId,jdbcType=BIGINT}
+  </delete>
+</mapper>

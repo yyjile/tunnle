@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nuc.tunnel.mapper.EmployeeMapper" >
+  <resultMap id="BaseResultMap" type="com.nuc.tunnel.entity.Employee" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="user_no" property="userNo" jdbcType="VARCHAR" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="input_time" property="inputTime" jdbcType="TIMESTAMP" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="avatar" property="avatar" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="photo" property="photo" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from employee
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+
+  <update id="deleteUserById" parameterType="java.lang.Long">
+    update employee set state = 0 where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <insert id="insert" parameterType="com.nuc.tunnel.entity.Employee" useGeneratedKeys="true" keyProperty="id" >
+    insert into employee (user_name,user_no, real_name, password,
+      tel, email, input_time, state,avatar,code)
+    values (#{userName,jdbcType=VARCHAR}, #{userNo,jdbcType=VARCHAR},#{realName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+      #{tel,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{inputTime,jdbcType=TIMESTAMP}, #{state,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR}
+      , #{code,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.nuc.tunnel.entity.Employee" >
+    update employee
+    <trim prefix="SET" suffixOverrides=",">
+      <if test="userName != null and userName !=''">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userNo != null and userNo !=''">
+        user_no = #{userNo,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null and realName !=''">
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null and password !=''">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null and tel !=''">
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null and email !=''">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="inputTime != null and inputTime !=''">
+        input_time = #{inputTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null and state !=''">
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="avatar != null and avatar !=''">
+        avatar = #{avatar,jdbcType=VARCHAR}
+      </if>
+      <if test="code != null and code !=''">
+        code = #{code,jdbcType=VARCHAR}
+      </if>
+      <if test="photo ! null and photo !=''">
+        photo = #{photo,jdbcType=VARCHAR}
+      </if>
+    </trim>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <update id="updateEmployeePass" parameterType="java.util.Map">
+    update employee
+    set password = #{password,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select id, user_name,user_no, real_name, password, tel, email, input_time, state,avatar,code,photo
+    from employee
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+  <select id="selectByUser" parameterType="com.nuc.tunnel.entity.Employee" resultMap="BaseResultMap">
+    select id, user_name,user_no, real_name, password, tel, email, input_time, state,avatar,code,photo
+    from employee
+    where user_name = #{userName,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByUserName" resultMap="BaseResultMap" parameterType="com.nuc.tunnel.entity.Employee" >
+    select id, user_name,user_no, real_name, password, tel, email, input_time, state,avatar,code,photo
+    from employee
+    where 1=1
+    <if test="userName != null and userName !=''">
+      and user_name like concat('%',#{userName},'%')
+    </if>
+    <if test="realName != null and realName !=''">
+      and real_name like concat('%',#{realName},'%')
+    </if>
+  </select>
+
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, user_name,user_no, real_name, password, tel, email, input_time, state,avatar,code,photo
+    from employee
+  </select>
+
+  <!--根据用户编号，密码查询用户信息-->
+  <select id="selectByEmployeeNumAndPassword" resultMap="BaseResultMap" parameterType="java.util.Map">
+    select id, user_name,user_no, real_name, password, tel, email, input_time, state,avatar,code,photo
+    from employee
+    where 1=1
+    <if test="userName != null and userName !=''">
+      and user_name = #{userName,jdbcType=VARCHAR}
+    </if>
+    <if test="password != null and password !=''">
+      and password = #{password,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <!--新增用户角色-->
+  <insert id="saveEmployeeNewRoles" parameterType="java.lang.Long">
+    insert into employee_role (employee_id,role_id)
+    values (#{employeeId,jdbcType=BIGINT},
+    #{roleId,jdbcType=BIGINT})
+  </insert>
+
+  <select id="selectUsersByRoleId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select emp.* from employee emp,employee_role er
+    where emp.id = er.employee_id
+    and er.role_id = #{roleId,jdbcType=BIGINT}
+  </select>
+</mapper>

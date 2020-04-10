@@ -1,0 +1,75 @@
+/* CSS Document */
+/*--------------添加角色信息------------*/
+/*外层大小*/
+.addJsDetail{
+  width:400px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 500px;
+  }
+/*表头样式*/
+.table_box p{
+  color:#024f80;
+  font-size:18px;
+  font-weight:700;
+  }
+/*表格边线*/
+.table_box{
+  border-top: solid 1px #7fbef3;
+  }
+/*td左边线*/
+.td_leftL{
+  border-left: solid 1px #7fbef3;
+  }
+/*td右边线*/
+.td_rightL{
+  border-right: solid 1px #7fbef3;
+  }
+/*td底边线*/
+.td_botL{
+  border-bottom: solid 1px #7fbef3;
+  }
+/*th背景*/
+.table_box tr th{
+  background-color:#f2f7fa;
+  font-size:14px;
+  color:#2b79aa;
+  }
+/*输入框宽度*/
+.input_box input,.input_box{
+  width:200px;
+  height:20px;
+  line-height:20px;
+  }
+.textarea_box textarea{
+  width:200px;
+  }
+.info_span{
+  font-size:13px;
+  color:#336699;
+  }
+/*-----------添加用户信息---------*/
+/*外层大小*/
+.addUserDetail{
+  width:600px;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top:10px;
+  }
+
+
+
+
+
+
+
+
+/*------------------------------------按钮样式----------------------------------*/
+.input_button{ width:71px; height:24px; background-image:url(../images/buttonbg.gif); background-repeat:no-repeat; color:#4d4d4d; background-color:transparent; border:none; cursor:pointer;}
+.xz{width:46px; height:27px; background-image:url(../images/xz.gif); background-repeat:no-repeat; cursor:pointer; background-color:transparent; border:none;}
+.pj{width:46px; height:21px; background-image:url(../images/pj.jpg); background-repeat:no-repeat; cursor:pointer; background-color:transparent; border:none;}
+.qk_big{width:46px; height:27px; background-image:url(../image/clear.jpg); background-repeat:no-repeat; cursor:pointer; background-color:transparent; border:none;}
+
+

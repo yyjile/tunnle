@@ -1,0 +1,105 @@
+/*-----------top顶部2013-11-21---------*/
+#top{ width:100%; height:25px; background-color:#f8f8f8; border-bottom:solid 1px #e1e1e1;}
+.top_main{ width:1100px; height:25px; margin-left:auto; margin-right:auto;}
+.wel_cont{ font-size:12px; color:#333; padding-top:7px; float:left;}
+.top_right{ width:380px; height:25px; float:right; }
+.top_right tr td a{ font-size:12px; color:#666;}
+.top_right tr td a:hover{ color:#f00;}
+/*-----主要内容  s ----*/
+#main{ width:1100px; margin-left:auto; margin-right:auto; margin-top:10px;}
+
+/*left   s*/
+#left{ width:181px; height:503px; float:left; margin-right:13px;}
+
+/*left   e*/
+/*二级子栏目   s*/
+.second_menu_ul{ width: 100%; height: 100%; list-style-type: none;}
+.second_menu_ul li{ float: left; margin-right: 5px; font-size:12px; color:#444; margin: 5px 10px 5px 10px;}
+.second_menu_ul li a{ text-decoration: none; color:#444;}
+
+.sub_two{ min-width:650px; margin-left:auto; margin-right:auto;}
+.sub_two a{ font-size:12px; color:#444; padding-left: 10px; display: table; float: left;}
+/*bigright   s*/
+#big_right{ width:904px; height:503px; float:left; }
+/*middle   s*/
+#middle{ width:664px; float:left;}
+/*middle   e*/
+/*right   s*/
+#right{ width:230px; float:right;}
+
+/*新闻动态  s*/
+.news{ width:228px; height:186px; border:solid 1px #dcdcdc; background-color:#f4f4f4; margin-top:10px; margin-bottom:10px;}
+.table_top{ border-bottom:solid 1px #dcdcdc;}
+.xw_hover{background-color:#ff9300; font-size:13px; color:#fff; font-weight:700; cursor:pointer;}
+.xw_now{font-size:13px; color:#bbbbbb; font-weight:700; cursor:pointer;}
+.list1{ width:218px; height:28px; margin-left:auto; margin-right:auto; border-bottom:dashed 1px #ccc; }
+.list1 a{ font-size:12px; color:#444444; text-decoration:none; }
+.list1 a:hover{ font-size:12px; color:#f00; }
+/*新闻动态  e*/
+/*right   e*/
+
+/*最新需求和服务   s*/
+.latest_needs{width:662px; height:209px; border:solid 1px #dbdbdb; float:left;}
+.zxxq{ width:320px; margin-left:auto; margin-right:auto; height:209px;}
+.zxxq_top{ border-bottom:solid 1px #dbdbdb;}
+.lm_title{ font-size:16px; color:#c75f02; font-weight:700;}
+.more a{ font-size:12px; color:#444444;}
+.list2{ width:310px; height:31px; margin-left:auto; margin-right:auto; border-bottom:dashed 1px #ccc; }
+.list2 a,.list2{ font-size:12px; color:#444444; text-decoration:none; }
+.list2 a:hover{ font-size:12px; color:#f00; }
+/*最新需求和服务   e*/
+
+/*委托服务动态   s*/
+.wtfw{ width:228px; height:209px; border:solid 1px #dbdbdb; float:right;}
+.list_box{ width:218px; margin-left:auto; margin-right:auto;}
+.list3{ width:208px; height:31px; margin-left:auto; margin-right:auto; border-bottom:dashed 1px #ccc; }
+.list3 a,.list3{ font-size:12px; color:#444444; text-decoration:none; }
+.list3 a:hover{ font-size:12px; color:#f00; }
+/*委托服务动态   e*/
+
+/*bigright   e*/
+
+/*big_box(最新注册会员  优秀义工  慈善项目  广告图片)   s*/
+#big_box{ width:1100px;}
+
+/*最新注册会员*/
+.lm_title1{color:#444444; font-size:16px; font-weight:700;}
+.list4{ width:171px; height:31px; margin-left:auto; margin-right:auto; border-bottom:dashed 1px #ccc; }
+.list4 a,.list4{ font-size:12px; color:#444444; text-decoration:none; }
+.list4 a:hover{ font-size:12px; color:#f00; }
+
+/*慈善项目*/
+.csxm{width:551px; float:right;}
+.title{ text-align:center; font-size:12px; color:#bd1f04; font-weight:700; padding-top:10px; padding-bottom:5px;}
+.zy{ font-size:12px; color:#444; padding-left:5px; line-height:20px;}
+.zy a {color: #FF0000}
+/*big_box(最新注册会员  优秀义工  慈善项目  广告图片)   e*/
+
+/*底部（明星企业   礼品推荐）*/
+#bottom{ width:1100px;}
+
+/*最新捐助*/
+.mxqy{ width:250px; float:left;}
+.mxqy_top{ margin-bottom:10px;}
+.ul1,.ul2{ float:left;}
+.ul1 li,.ul2 li{ list-style:none; padding-bottom:4px;}
+.ul1{ float:left; padding-right:14px;}
+/*明星企业*/
+.zxjz{ width:263px; margin-left:15px; height:223px; float:left; }
+.list5{ width:238px; height:35px; margin-left:auto; margin-right:auto; border-bottom:dashed 1px #ccc; }
+.list5 a,.list5{ font-size:12px; color:#444444; text-decoration:none; }
+.list5 a:hover{ font-size:12px; color:#f00; }
+.new_jz{ font-size:12px; color:#444444; font-weight:700; padding-left:10px; padding-top:8px; }
+
+/*礼品推荐*/
+.lptj{ width:1100px; margin-top:10px; margin-bottom:12px;}
+.right_line{ border-right:solid 1px #dbdbdb;}
+.bottom_line{ border-bottom:solid 1px #dbdbdb;}
+.detail{ width:64px; height:24px; background-color:#ff7f02;}
+.sm{font-size:12px; line-height:18px;}
+.detail a{ color:#fff; font-size:12px;}
+/*-----主要内容  e ----*/
+/*优秀义工*/
+.yxyg_title{padding-top:12px;}
+.yxyg_title a{ font-size:12px; color:#444; text-decoration:none;}
+.yxyg_title a:hover{color:#f00;}

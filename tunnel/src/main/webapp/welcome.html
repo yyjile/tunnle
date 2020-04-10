@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>首页</title>
+    <link rel="stylesheet" href="lib/jquery-easyui/themes/icon.css"/>
+    <link rel="stylesheet" href="lib/jquery-easyui/themes/default/easyui.css"/>
+    <link rel="stylesheet" href="lib/jquery-easyui/demo/demo.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+</head>
+<style>
+    #editPwdForm {
+        float: left;
+        position: absolute;
+        top: 60px;
+        left: 45px;
+    }
+
+    .submenu {
+        background: #EEEEEE;
+        font-size: 13px;
+    }
+
+    .submenu li {
+        border-bottom: 1px solid #FFFFFF;
+        list-style-type: none;
+    }
+
+    .submenu a {
+        display: block;
+        text-decoration: none;
+        color: #0a0a0a;
+        padding: 12px;
+        padding-left: 30px;
+        -webkit-transition: all 0.25s ease;
+        -o-transition: all 0.25s ease;
+        transition: all 0.25s ease;
+    }
+
+    .submenu a:hover {
+        background: #d4d4d4;
+    }
+</style>
+<body class="easyui-layout">
+<!--上，LOGO-->
+<div data-options="region:'north',collapsible:false,hideExpandTool:true" style="height:62px;">
+    <span id="tempId" hidden="hidden" th:text="${session.id}"></span>
+    <!--以后根据客户的要求更换style.css中该样式的图片-->
+    <div class="admin_top_logo"></div>
+    <div class="admin_top_info">
+        <div class="admin_top_info_user">
+            <span>当前用户：</span>
+            <span style="color: red;" th:text="${session.userName}">游客</span>
+            <span>|</span>
+            <span><a href="#" style="text-decoration: none" onclick="loginOut();">注 销</a></span>
+            <span>|</span>
+    <span><a href="#" style="text-decoration: none" onclick="refush()">刷新权限&nbsp;</a> </span>
+</div>
+</div>
+</div>
+<!--左边-->
+<div data-options="region:'west',title:'&nbsp;&nbsp;菜 单 栏'" style="width:150px;">
+    <div id="nav" class="easyui-accordion" data-options="fit:true,border:false,animate:false">
+    </div>
+</div>
+<!--主体内容-->
+<div data-options="region:'center',title:''" style="background:#eee;">
+    <div id="tt" class="easyui-tabs" data-options="fit:true,border:false,plain:true">
+        <div title="我的首页">
+        </div>
+    </div>
+</div>
+<span id="notice" hidden="hidden" th:text="${msg}"></span>
+<!--修改密码窗口-->
+<div id="editPwdWin" style="display: none">
+    <form id="editPwdForm" name="editPwdForm" method="post">
+        <input id="id" name="id" hidden="hidden"/>
+        <table>
+            <tr>
+                <td>
+                    <span style="color: red">*</span>修改密码：
+                </td>
+                <td>
+                    <input id="pwd" name="userPassword" class="easyui-textbox" type="password" style="width:150px;"
+                           data-options="required:true,validType:['pwdCheck','length[6,18]'],validateOnCreate:false"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span style="color: red">*</span>再次输入密码：
+                </td>
+                <td>
+                    <input class="easyui-textbox" style="width:150px;" type="password"
+                           required="required" validType="equalTo['#pwd']" validateOnCreate="false"/>
+                </td>
+            </tr>
+        </table>
+        <br/>
+    </form>
+</div>
+</body>
+<script src="lib/jquery/dist/jquery.js"></script>
+<script src="lib/jquery-easyui/jquery.easyui.min.js"></script>
+<script src="lib/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+<script src="lib/jquery-easyui/easyui-extend/easyui-extend-rcm.js"></script>
+<script>
+    function addTab(title, url) {
+        if ($('#tt').tabs('exists', title)) {
+            $('#tt').tabs('select', title);
+        } else {
+            var content = '<iframe frameborder="0"  src="' + url + '" scrolling="no" style="width:100%;height:98%;"></iframe>';
+            $('#tt').tabs('add', {
+                title: title,
+                content: content,
+                closable: true,
+            });
+        }
+    }
+    //提醒修改密码
+    $(function () {
+        var notice = $("#notice").html();
+        if (notice == "pwdNOK") {
+            $.messager.confirm("警 告", "您的密码为初始密码，为了您的账户安全，请前往修改！", function (r) {
+                if (r) {
+                    $('#editPwdWin').dialog({
+                        title: '修改密码',
+                        iconCls: 'icon-home',
+                        closable: false,
+                        cache: false,
+                        modal: true,
+                        height: 200,
+                        width: 350,
+                        buttons: [{
+                            text: '确定',
+                            iconCls: 'icon-ok',
+                            handler: function () {
+                                $("#id").val($("#tempId").html());
+                                if ($("#editPwdForm").form('validate')) {
+                                    $.ajax({
+                                        url: "user/editPwd",
+                                        data: $("#editPwdForm").serialize(),
+                                        type: "post",
+                                        dataType: "json",
+                                        success: function (data) {
+                                            if (data.msg == "success") {
+                                                $.messager.alert(
+                                                    "提示信息", "修改成功，请重新登录！", "info", function () {
+                                                        window.history.back(-2);
+                                                    });
+                                                $('.panel-tool-close').hide();
+                                            } else {
+                                                $.messager.alert("警告", "修改失败！")
+                                            }
+                                        },
+                                    })
+                                }
+                            }
+                        }, {
+                            text: '取消',
+                            iconCls: 'icon-cancel',
+                            handler: function () {
+                                $.messager.confirm("警告", "您确认取消修改密码吗？您的帐号会存在风险！", function (r) {
+                                    if (r) {
+                                        $("#editPwdWin").window("destroy");
+                                    }
+                                })
+                            }
+                        }]
+                    });
+                }
+            })
+        }
+    })
+    //退出系统
+    function loginOut() {
+        $.messager.confirm("提 示", "您确定退出系统吗？", function (r) {
+            if (r) {
+                window.location.href = "api/loginOut";
+            }
+        })
+    }
+    //刷新系统？？
+    function refush() {
+        window.location.reload();
+    }
+    //左侧异步获取用户所拥有的菜单权限
+    $(function () {
+        //一级菜单
+        $.ajax({
+            url: 'api/findRoleMenus',
+            type: 'POST',
+            data: {id: $("#tempId").html()},
+            dataType: "json",
+            success: function (data) {
+                for (var i = 0; data.length; i++) {
+                    //alert(data[i].resourceName);
+                    $('#nav').accordion('add', {
+                        menuid: data[i].id,
+                        title: '&nbsp;&nbsp;' + data[i].text,
+                        selected: false,
+                        content: '<div class="submenu"><ul name="' + data[i].text + '">' + '</ul></div>',
+                    });
+                }
+            }
+        });
+        //二级菜单
+        var pp = $('#nav').accordion({
+            onSelect: function (title, index) {
+                //前面title加了两个空格字符，此处截取
+                title = title.substring(12, title.length);
+                //避免每次打开都追加ul
+                $("ul[name='" + title + "']").empty();
+                $.ajax({
+                    url: 'api/selectMenuByUserId',
+                    data: {parentName: title, userId: $("#tempId").html()},
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function (data) {
+                        for (var i = 0; data.length; i++) {
+                            $("ul[name='" + title + "']").append('<li><a href="#" onclick="addTab(\'' + data[i].resourceName + '\',\'' + data[i].resourceUrl + '\')">' + data[i].resourceName + '</a></li>');
+                        }
+                    }
+                })
+            }
+        })
+    })
+</script>
+</html>

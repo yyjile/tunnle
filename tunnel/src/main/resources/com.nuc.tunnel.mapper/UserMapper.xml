@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nuc.tunnel.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.nuc.tunnel.entity.User">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="user_no" property="userNo" jdbcType="VARCHAR"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="last_login" property="lastLogin" jdbcType="TIMESTAMP"/>
+        <result column="remarks" property="remarks" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="UserRoleResultMap" type="com.nuc.tunnel.entity.User">
+        <id column="u_id" property="id" jdbcType="INTEGER"/>
+        <result column="user_no" property="userNo" jdbcType="VARCHAR"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="last_login" property="lastLogin" jdbcType="TIMESTAMP"/>
+        <result column="u_remarks" property="remarks" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="UserDto" type="com.nuc.tunnel.dto.UserDto">
+        <result column="USER_NO" property="userNo" jdbcType="VARCHAR"/>
+        <result column="USER_NAME" property="userName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询user的数量-->
+    <select id="userCount" resultType="INTEGER">
+        SELECT count(*) from user
+    </select>
+    
+    <!--增加用户 -->
+    <insert id="saveUser" parameterType="com.nuc.tunnel.entity.User">
+        INSERT INTO user (user_no,user_name,last_login,remarks,password)
+        VALUES(#{userNo,jdbcType=VARCHAR},#{userName,jdbcType=VARCHAR},#{lastLogin,jdbcType=TIMESTAMP},
+        #{remarks,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR})
+    </insert>
+
+    <!--保存用户新的的角色-->
+    <insert id="saveUserRole" parameterType="INTEGER">
+        INSERT INTO user_role(id,user_id,role_id)
+        VALUES (user_role_seq.nextval,#{userId},#{roleId})
+    </insert>
+
+    <!--删除用户 -->
+    <delete id="deleteUser" parameterType="INTEGER">
+        DELETE FROM user WHERE id=#{id}
+    </delete>
+
+    <!--删除用户角色中间表的数据 -->
+    <delete id="deleteUserRoleByUserIdAndRoleId" parameterType="INTEGER">
+        DELETE FROM user_role
+        WHERE user_id=#{userId} AND role_id=#{roleId}
+    </delete>
+
+    <!--修改用户 -->
+    <update id="updateUser" parameterType="com.nuc.tunnel.entity.User">
+        UPDATE user
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="userNo != null and userNo!='' ">
+                user_no=#{userNo,jdbcType=VARCHAR},
+            </if>
+            <if test="userName != null and userName!='' ">
+                user_name=#{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null and password!='' ">
+                password=#{password,jdbcType=VARCHAR},
+            </if>
+            <if test="lastLogin != null and lastLogin!='' ">
+                last_login=#{lastLogin,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remarks != null and remarks!='' ">
+                remarks=#{remarks,jdbcType=VARCHAR}
+            </if>
+        </trim>
+        WHERE id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <!--查询单个用户 -->
+    <select id="findUserById" parameterType="INTEGER" resultMap="BaseResultMap">
+        SELECT id,user_no,user_name,last_login,remarks
+        FROM user WHERE id=#{id}
+    </select>
+
+    <!--用户编号模糊查询 -->
+    <select id="findUserByUserNoLike" parameterType="STRING" resultMap="BaseResultMap">
+        SELECT id,user_no,user_name,last_login,remarks
+        FROM user
+        WHERE user_no LIKE concat(concat('%',#{userNo,jdbcType=VARCHAR}),'%')
+    </select>
+
+    <!--根据用户名获取用户信息-->
+    <select id="findUserByUserName" parameterType="STRING" resultMap="BaseResultMap">
+        SELECT id,user_no,user_name,last_login,remarks,password
+        FROM user
+        WHERE user_name = #{userName}
+    </select>
+    <select id="findUserByUserNoAndNotId" parameterType="com.nuc.tunnel.entity.User" resultMap="BaseResultMap">
+        SELECT id,user_no,user_name,last_login,remarks FROM user WHERE user_no = #{userNo} and id <![CDATA[!=]]> #{id}
+    </select>
+    <!--查询所有用户-分页查询 -->
+    <select id="findAllUser" parameterType="INTEGER" resultMap="BaseResultMap">
+      SELECT id,user_no,user_name,last_login,remarks FROM user
+    </select>
+
+    <!--根据角色id查询用户 -->
+    <select id="findUserByRoleId" parameterType="INTEGER" resultMap="BaseResultMap">
+        SELECT mu.*
+        FROM mj_role mr,user_role mur,user mu
+        WHERE mr.id = mur.role_id
+        AND mu.id = mur.user_id
+        AND mr.id = #{roleId}
+    </select>
+
+    <select id="findUserByRoleIds" parameterType="java.util.List" resultMap="BaseResultMap">
+        SELECT mu.*
+        FROM mj_role mr,user_role mur,user mu
+        WHERE mr.id = mur.role_id
+        AND mu.id = mur.user_id
+        <if test="roleIdList.size !=0">
+            and mr.id in
+            <foreach collection="roleIdList" index="index" item="item" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+    </select>
+    <!--查询数据库中是否存在对应用户编号、密码的用户 -->
+    <select id="findUserByUserNoAndPassword" parameterType="com.nuc.tunnel.entity.User" resultMap="BaseResultMap">
+        SELECT id,user_no,user_name,password,last_login,remarks
+        FROM user
+        WHERE user_name=#{userName,jdbcType=VARCHAR}
+        and password=#{password,jdbcType=VARCHAR}
+    </select>
+    <select id="findUser" resultMap="BaseResultMap">
+        SELECT *
+        FROM user
+    </select>
+
+    <select id="getAllUser" resultMap="UserDto">
+        SELECT USER_NO,USER_NAME FROM (
+          SELECT ROWNUM rn,USER_NO,USER_NAME FROM (
+            SELECT ROWNUM rn,USER_NO,USER_NAME FROM user
+          )WHERE ROWNUM <![CDATA[<=]]> #{pageNum,jdbcType=INTEGER}*#{pageSize,jdbcType=INTEGER}
+        )d WHERE d.rn <![CDATA[>=]]> (#{pageSize,jdbcType=INTEGER}*(#{pageNum,jdbcType=INTEGER}-1)+1)
+    </select>
+
+</mapper>

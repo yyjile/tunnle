@@ -1,0 +1,112 @@
+/* CSS Document */
+
+
+/*模态弹窗基础样式*/
+#basic-modal-content {
+	display: none;
+	}
+#simplemodal-overlay {
+	background-color: #dbdbdb;
+}
+#simplemodal-container {
+	height: 300px;
+	width: 300px;
+}
+#simplemodal-container a.modalCloseImg {
+	background: url('../image/close.png') no-repeat;
+	width: 185px;
+	height: 29px;
+	display: inline;
+	z-index: 3200;
+	position: absolute;
+	top: 0px;
+	right: 39px;
+	cursor: pointer;
+} 
+
+/*公共部分*/
+*{ margin:0; padding:0;}
+img{ border:none;}
+a{ text-decoration:none;}
+.clear{ clear:both;}
+
+/*-----主要内容  s ----*/
+#main{ width:1100px; margin-left:auto; margin-right:auto; margin-top:10px;}
+
+/*-----主要内容  e ----*/
+/*内容区*/
+#container{ width:100%;  margin-left:auto; margin-right:auto; background-image:url(../image/containerbg.jpg); background-repeat:no-repeat;}
+
+/*-----banner   s----*/
+#banner{ width:1100px; height:91px; margin-left:auto; margin-right:auto; }
+/*我的银行图标*/
+.my_yh{ width:142px; height:37px; background-color:#ff9300;}
+.my_yh img{ padding-right:10px; padding-bottom:5px;}
+.my_yh a{ text-decoration:none; font-size:16px; color:#fff; font-family:"Microsoft Yahei Font"; font-weight:700;}
+.my_yh p{ padding-top:10px;}
+
+/*注册登录*/
+.lg { font-size:12px; color:#3bb3c2;}
+.lg a{ font-size:12px; color:#3bb3c2;}
+.lg a:hover{ color:#f00;}
+
+/*欢迎消息*/
+.welcome{ font-size:12px; color:#3bb3c2; padding-left:10px; padding-top:10px;}
+
+/*需求信息服务信息*/
+.tab_hover{ background-color:#ff9300; width:82px; height:26px; display:block; float:left; cursor:pointer;}
+.tab_y{background-color:#dfdfde; width:82px; height:26px; display:block; float:left; cursor:pointer;}
+.tab_hover p,.tab_y p{ font-size:15px; color:#fff; text-align:center; font-weight:700; padding-top:6px;}
+
+/*搜索框*/
+.search_input input{ width:385px; height:29px; border:solid 1px #ff9300; line-height: 29px;}
+.search_input p{ float:left; display:inline;}
+.search_input a{ float:left;}
+
+/*-----banner  e ----*/
+
+/*-----nav  s ----*/
+#nav{ width:100%; height:44px; background-image:url(../image/navbg.jpg); background-repeat:repeat-x;}
+.menu_box{width:1100px; margin-left:auto; margin-right:auto; position:relative;}
+.menu{ width:1100px; height:40px; margin-left:auto; margin-right:auto; }
+.all a{text-decoration:none; font-size:16px; color:#fff; font-family:"Microsoft Yahei Font";}
+.nav_name a,.nav_namehoverbg a{text-decoration:none; font-size:16px; color:#fff; font-family:"Microsoft Yahei Font"; font-weight:700;}
+.nav_namehoverbg{ background-color:#f27302;}
+
+/*隐藏的菜单*/
+.sub_menu{ width:177px; height:503px; border-left:solid 2px #f27302; border-right:solid 2px #f27302; border-bottom:solid 2px #f27302; z-index:99px; position:absolute; top:-2px; background-color:#f7f7f7;}
+.sub_menu_name{ width:167px; height:30px; border-bottom:solid 1px #dbdbdb; margin-left:auto; margin-right:auto;}
+.menu_name a{ font-size:14px; color:#444444; }
+.menu_name a:hover{ color:#f00;}
+
+/*我要发布*/
+.wyfb img{ padding-left:10px;}
+.wyfb a{text-decoration:none; font-size:16px; color:#fff; font-family:"Microsoft Yahei Font"; font-weight:700;}
+
+/*我要发布按钮*/
+#wyfb_nn{ width:142px; height:60px; background-color:#FF9400; position: absolute; left: 958px; top: 40px; display: none;}
+.fbxq_nn table tr td a{ font-size:14px; color:#fff; text-decoration:none; display:block; width:142px; height:30px; font-weight:700;}
+.fbxq_nn table tr td a:hover{ background-color:#fdb44e;}
+.fbxq_nn table tr td p{ padding-left:10px; padding-top:7px; font-family:"Microsoft Yahei Font";}
+
+
+/*-----nav  e ----*/
+
+/*foot版权信息*/
+#foot{ margin-left:auto; margin-right:auto; height:60px; background-color:#464646;}
+#foot p{ font-size:12px; color:#fff; line-height:20px; text-align:center;}
+#foot a{ color: #fff;}
+
+/*------------------------------公共部分--------------------------------------*/
+.xz{width:46px; height:21px; background-image:url(../image/chance.gif); background-repeat:no-repeat; cursor:pointer; background-color:transparent; border:none;}
+
+/*首页登录窗口*/
+.login{ width:250px; height:250px; border:solid 1px #ff9300; display: none; background-color:#FFF;}
+.login table tr td{ font-size:12px; color:#444;}
+.yhdl{ font-size: 16px; color:#FFFFFF; font-family:"Microsoft Yahei Font";}
+.lg_input input{ width:150px; height:20px; border:solid 1ps #cccccc;}
+.lg_yzm input{ width:85px; height:20px; border:solid 1ps #cccccc;}
+.dl_botton a{ display:block; width:70px; height:29px; background-color:#db3e00; font-size:14px; text-decoration:none;}
+.dl_botton p{ font-size:14px; color:#fff; padding-top:7px; text-align:center; letter-spacing:5px;}
+.jzzt a{ font-size:12px; color:#444; text-decoration:none;}
+.wjmm a{ color:#444;}

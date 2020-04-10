@@ -1,0 +1,38 @@
+#配置Spring 相关的主服务
+spring:
+    profiles:
+        active: dev
+    application:
+        name: tunnel
+    session:
+        store-type: none
+
+    redis:
+        database: 0
+        password:
+        host: 127.0.0.1
+        port: 6379
+        timeout: 60000
+        pool:
+            max-idle: 8
+            min-idle: 0
+            max-active: 8
+            max-wait: -1
+        sentinel:
+            master: mymaster
+            nodes: 127.0.0.1:26379
+
+server:
+      port: 8080
+      session:
+        timeout: 10
+
+#配置MyBatis
+mybatis:
+    mapper-locations: classpath:com.nuc.tunnel.mapper/*Mapper.xml,com.nuc.tunnel.mapper/*/*Mapper.xml
+    type-aliases-package: com.nuc.tunnel.entity
+#ibatis logger config
+ibatis:
+    logger:
+        com:
+          ibatis: debug

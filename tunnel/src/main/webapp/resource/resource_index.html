@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script src="../lib/jquery/dist/jquery.js"></script>
+    <script src="../lib/jquery-easyui/jquery.easyui.min.js"></script>
+    <link rel="stylesheet" href="../lib/jquery-easyui/themes/icon.css"/>
+    <link rel="stylesheet" href="../lib/jquery-easyui/themes/default/easyui.css"/>
+    <script src="resource_index.js"></script>
+</head>
+<style>
+    #treeData {
+        margin: 0 auto;
+    }
+</style>
+<body>
+<div id="treeData"></div>
+<!--右键菜单-->
+<div id="rightMenu" class="easyui-menu" style="width:120px;display: none">
+    <div onclick="add()">添加节点</div>
+    <div onclick="remove()">删除节点(D)</div>
+    <div onclick="edit()">修改节点(E)</div>
+    <div onclick="addChildren()">添加子节点</div>
+    <input type="text" id="newRowId" hidden="true"/>
+</div>
+</body>
+<script>
+</script>
+</html>

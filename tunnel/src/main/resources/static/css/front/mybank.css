@@ -1,0 +1,60 @@
+#main_mybank{ width:1100px;  margin:10px auto 10px auto;}
+
+/*我的银行左边*/
+#mybank_left{ width:177px; float:left;}
+.crl{ width:177px; height:10px;}
+.wdyh_top{ width:177px; height:30px; border-bottom:solid 1px #dbdbdb;}
+.wdyh_top1{ width:177px; height:30px;}
+.wdyh_top tr th a,.wdyh_top1 tr th a{ font-size:16px; color:#444; font-family:"Microsoft Yahei Font";}
+
+/*我的银行子栏目*/
+.sub_mybank{ width:177px; border:solid 1px #dbdbdb; margin-bottom:12px; background-color:#f9f9f9;}
+
+/*子栏目*/
+.mybank_submenu{ width:177px; height:35px;}
+.mxcx tr td a{ font-size:14px; color:#444;}
+.sub_tab a{ width:177px; height:30px; background-color:#f9f9f9; display:block; border-bottom:dashed 1px #dbdbdb;}
+.sub_tab a:hover{ width:177px; height:30px; background-color:#efefef; border-bottom:solid 1px #efefef;}
+.sub_tab p{ padding-left:20px; padding-top:7px;}
+
+/*我的银行右边*/
+#mybank_right{ width:909px; float:right; border: solid 1px #dbdbdb;}
+.wq_fw{ width:889px; height:215px; margin-left:auto; margin-right:auto; margin-top:15px;}
+.time_notice{ width:889px; height:215px; margin-left:auto; margin-right:auto; margin-top:15px;}
+
+/*消息通知和登录时间*/
+.myxq_list table tr td,.time{ font-size:12px; color:#444;}
+.dl_detail{ width:435px; height:200px; border:solid 1px #dbdbdb; float:left;}
+.dl_detail p{ font-size:12px; color:#444; line-height:25px; padding-left:15px;}
+.more a{ font-size:12px; color:#444444;}
+.more a:hover{ color:#f00;}
+
+/*我的需求*/
+.my_xq{ width:435px; height:200px; border:solid 1px #dbdbdb; float:right;}
+.myxq_top{ border-bottom:solid 1px #dbdbdb;}
+.myxq_title{ font-size:14px; color:#444; font-weight:700;}
+.wcj_num{ color:#FF0000; font-size:12px;}
+.myxq_list{ width:425px; margin-left:auto; margin-right:auto;}
+.myxq_list a,.myxq_top a{ font-size:12px; color:#444;}
+.myxq_list p,.myxq_top p{ font-size:12px; color:#444;}
+.myxq_list a:hover,.myxq_top a:hover{ color:#f00;}
+.time{ font-size:12px; color:#444;}
+
+/*未承接*/
+.wcj{ color:#FF0000; font-size:12px;}
+
+/*时间币*/
+.sjb{ font-size:12px; color:#FF6600;}
+
+/*已承接*/
+.ycj{ color:#00CC00; font-size:12px;}
+
+/*已完成*/
+.ywc{ color:#999; font-size:12px;}
+
+/*我的服务*/
+.my_fw{ width:435px; height:200px; border:solid 1px #dbdbdb; float:right;}
+
+/*会员等级   信誉样式*/
+.dj_a a{font-size:12px; color:#333;}
+.dj_a a:hover{font-size:12px; color:#f00;}

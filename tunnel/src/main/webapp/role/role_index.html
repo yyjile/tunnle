@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>用户列表</title>
+    <link rel="stylesheet" href="../lib/jquery-easyui/themes/icon.css"/>
+    <link rel="stylesheet" href="../lib/jquery-easyui/themes/default/easyui.css"/>
+</head>
+<style>
+    #addRoleForm, #editRoleForm {
+        float: left;
+        position: absolute;
+        left: 60px;
+    }
+</style>
+<body>
+<!--用户列表-->
+<table id="roleList"></table>
+<!--添加角色窗口-->
+<div id="RoleWin" style="display: none">
+    <br/>
+    <br/>
+    <form id="addRoleForm" name="addRoleForm" method="post">
+        <table style="border-collapse:separate; border-spacing:0px 15px;">
+            <tr>
+                <td><span style="color: red">*</span>角色名：</td>
+                <td><input class="easyui-textbox" style="width:150px" type="text"
+                           id="roleName" name="roleName"
+                           prompt="请输入要添加的角色名"/>
+                    <span id="info_notice" style="color: #2B79AA;font-size: 12px">*角色名必填</span></td>
+            </tr>
+            <tr>
+                <td>角色描述：</td>
+                <td><input class="easyui-textbox" style="width:150px" type="text"
+                           id="roleDescription" name="roleDescription"
+                           prompt="如何描述该角色"
+                /></td>
+            </tr>
+        </table>
+        <div id="Btn">
+            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok',plain:true" onclick="addRole()">保
+                存</a>&nbsp;
+            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true" onclick="cancelAdd()">取
+                消</a>
+        </div>
+    </form>
+</div>
+<!--修改角色窗口-->
+<div id="EditRoleWin" style="display: none">
+    <br/>
+    <br/>
+    <form id="editRoleForm" name="editRoleForm">
+        <input hidden="hidden" id="editId" name="id"/>
+        <table style="border-collapse:separate; border-spacing:0px 10px;">
+            <tr>
+                <td>
+                    <span style="color: red">*</span>角色名：
+                </td>
+                <td>
+                    <input id="editRoleName" class="easyui-textbox" style="width:150px" name="roleName" required="required"/>
+                </td>
+            </tr>
+            <tr>
+                <td>角色描述：</td>
+                <td>
+                    <input id="editRoleDescription" class="easyui-textbox" style="width:150px" name="roleDescription" required="required"/>
+                </td>
+            </tr>
+            <tr>
+                <td>角色状态：</td>
+                <td >
+                    <input id="editRoleAvailable" class="easyui-switchbutton" name="roleAvailable" data-options="onText:'激活',offText:'停用'">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<div id="roleResourceWin" class="easyui-window" title="设置角色权限" style="width:440px;height:400px;display: none"
+     data-options="iconCls:'icon-save',modal:true,closed:true">
+    <table id="treeData"></table>
+    <!--隐藏的角色id-->
+    <input id="roleId" hidden="hidden">
+</div>
+<script src="../lib/jquery/dist/jquery.js"></script>
+<script src="../lib/jquery-easyui/jquery.easyui.min.js"></script>
+<script src="../lib/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+<script src="../lib/jquery-easyui/easyui-extend/easyui-extend-rcm.js"></script>
+<script src="../lib/common/common.js"></script>
+<script src="role_index.js"></script>
+<script src="role_add.js"></script>
+<script src="role_edit.js"></script>
+</body>
+</html>

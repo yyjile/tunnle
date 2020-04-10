@@ -1,0 +1,43 @@
+/* CSS Document */
+/*�б����*/
+#left_xq{ width:181px; float:left; height:100%;}
+/*�б��ұ�*/
+/*right   s*/
+#right_xq{ width:905px; float:right; background-color:#FFFFFF; margin-bottom:20px;}
+
+/*��������*/
+.xq_type{ width:885px; margin-left:auto; margin-right:auto; margin-bottom:15px;}
+.all_xq{ font-size:16px; color:#444; padding-left:5px; font-weight:700;}
+.line_b{ border-bottom:solid 1px #dbdbdb;}
+.type_xq{ font-size:13px; color:#444; font-weight:700; }
+.qb a{ width:40px; height:20px; display:block; background-color:#ff8a00;}
+.qb p{ font-size:12px; color:#FFFFFF; padding-top:3px; letter-spacing:1px;}
+.sub_type a{ font-size:12px; color:#444; }
+
+
+/*����*/
+.search{ width:885px; height:36px; margin-left:auto; margin-right:auto; background-color:#f7f7f7; border-top:solid 1px #e4e4e4; border-bottom:solid 1px #e4e4e4; margin-bottom:15px;}
+.ss_table{ border:solid 1px #cccccc; background-color:#FFFFFF;}
+.ss_input input{ width:195px; height:21px; border:solid 1px #fff; line-height: 21px;}
+
+/*�����б�*/
+.xq_list{ width:865px; margin-left:auto; margin-right:auto;}
+.list_box{ width:100%; border-bottom:solid 1px #e4e4e4; margin-bottom:5px;}
+.xq_title a{ font-size:12px; font-weight:700; color:#0b73bb;}
+.xq_title{ font-size:12px; color:#444;}
+.xq_title1{ font-size:12px; color:#999999;}
+
+
+
+/*�б��ҳ*/
+.fen_page{ height:30px; width:865px; margin-left:auto; margin-right:auto; margin-top:25px;}
+.fen_page table{ height:34px; background-image:url(images/fybg.jpg); background-repeat:repeat-x; border-top: solid 1px #ccc; border-right:solid 1px #ccc; float:right;}
+.page_y a{  color:#444; width:30px; height:30px; display:block; background-color:#fff; border-left:solid 1px #ccc;}
+.page_y a:hover{color:#FFFFFF; width:30px; height:30px; display:block; background-color:#ff9300; border-left:solid 1px #ff9300;}
+.page_y p{ font-size:12px; padding-top:8px;}
+
+.page_y1 a{  color:#444; width:60px; height:30px; display:block; background-color:#fff; border-left:solid 1px #ccc;}
+.page_y1 a:hover{ color:#FFFFFF; width:60px; height:30px; display:block; background-color:#ff9300; border-left:solid 1px #ff9300; }
+.page_y1 p{ font-size:12px; padding-top:8px;}
+
+
